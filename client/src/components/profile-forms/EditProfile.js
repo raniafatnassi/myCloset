@@ -34,7 +34,7 @@ const EditProfile = ({
           phoneNumber: loading || !profile.phoneNumber ? '' : profile.phoneNumber,
           job: loading || !profile.job ? '' : profile.job,
       })
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   return (
     <Fragment>

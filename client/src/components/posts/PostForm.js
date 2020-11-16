@@ -1,55 +1,64 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addPost } from '../../actions/post';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addPost } from "../../actions/post";
 
 const PostForm = ({ addPost }) => {
-  const [text, setText] = useState('');
-  const [price, setPrice] = useState('');
+  const [text, setText] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
 
   return (
-    <div className='post-form'>
-      <div className='bg-primary p'>
-        <h3>Say Something...</h3>
+    <div className="post-form">
+      <div className="bg-primary p">
+        <h3>You can create your own post here</h3>
       </div>
       <form
-        className='form my-1'
-        onSubmit={e => {
+        className="form"
+        onSubmit={(e) => {
           e.preventDefault();
           addPost({ text, price });
-          setText('');
-          setPrice('');
+          setText("");
+          setPrice("");
         }}
       >
-        <textarea
-          name='text'
-          cols='30'
-          rows='5'
-          placeholder='Create a post'
+        <div className="form-group">
+        <input
+          type="text"
+          name="text"
+          placeholder="Product Name"
           value={text}
-          onChange={e => setText(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
           required
         />
-        <textarea
-          name='text'
-          cols='30'
-          rows='5'
-          placeholder='Price'
+        </div>
+        <div className="form-group">
+        <input
+          type="text"
+          name="price"
+          placeholder="Product Price"
           value={price}
-          onChange={e => setPrice(e.target.value)}
+          onChange={(e) => setPrice(e.target.value)}
           required
         />
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
+        </div>
+        <div className="form-group">
+        <input
+            type="text"
+            placeholder="Please Put an Image of Your Product"
+            name="image"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+          </div>
+        <input type="submit" className="btn btn-dark my-1" value="Submit" />
       </form>
     </div>
   );
 };
 
 PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired
+  addPost: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { addPost }
-)(PostForm);
+export default connect(null, { addPost })(PostForm);
