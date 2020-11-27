@@ -9,6 +9,7 @@ import Profile from "../profile/Profile";
 import CreateProfile from "../profile-forms/CreateProfile";
 import EditProfile from "../profile-forms/EditProfile";
 import Posts from "../posts/Posts";
+import AddToCard from "../posts/AddToCard";
 import Post from "../post/Post";
 import NotFound from "../layout/NotFound";
 import PrivateRoute from "../routing/PrivateRoute";
@@ -22,6 +23,8 @@ const Routes = () => {
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/profiles" component={Profiles}></Route>
         <Route exact path="/profile/:id" component={Profile}></Route>
+        <Route exact path="/posts" component={Posts}></Route>
+        <Route exact path="/posts/:id" component={Post}></Route>
         <PrivateRoute
           exact
           path="/dashboard"
@@ -37,8 +40,12 @@ const Routes = () => {
           path="/edit-profile"
           component={EditProfile}
         ></PrivateRoute>
-        <PrivateRoute exact path="/posts" component={Posts}></PrivateRoute>
-        <PrivateRoute exact path="/posts/:id" component={Post}></PrivateRoute>
+        <PrivateRoute
+          exact
+          path="/addCart"
+          component={AddToCard}
+        ></PrivateRoute>
+
         <Route component={NotFound}></Route>
       </Switch>
     </section>

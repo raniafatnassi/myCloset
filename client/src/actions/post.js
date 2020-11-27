@@ -9,6 +9,7 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  DELETE_POSTS_ADMIN,
 } from "./types";
 
 // Get Posts
@@ -69,6 +70,25 @@ export const deletePost = (id) => async (dispatch) => {
 
     dispatch({
       type: DELETE_POSTS,
+      payload: id,
+    });
+
+    dispatch(setAlert("Post Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Delete Post for Admin
+export const deletePostAdmin = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/admin/delete_post/${id}`);
+
+    dispatch({
+      type: DELETE_POSTS_ADMIN,
       payload: id,
     });
 

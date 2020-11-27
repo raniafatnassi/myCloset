@@ -15,7 +15,7 @@ app.use("/api/users", require("./routes/api/users"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 app.use("/api/auth", require("./routes/api/auth"));
-app.use("/api/article", require("./routes/api/article"));
+app.use("/api/admin", require("./routes/api/admin"));
 
 app.listen(PORT, (req, res) => {
   console.log(`Server running on port ${PORT}`);

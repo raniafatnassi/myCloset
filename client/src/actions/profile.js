@@ -7,6 +7,7 @@ import {
   PROFILE_ERROR,
   ACCOUNT_DELETED,
   CLEAR_PROFILE,
+  CLEAR_PROFILE_ADMIN,
 } from "./types";
 
 // Get current users profile
@@ -106,6 +107,27 @@ export const deleteAccount = () => async (dispatch) => {
       await axios.delete("/api/profile");
 
       dispatch({ type: CLEAR_PROFILE });
+      dispatch({ type: ACCOUNT_DELETED });
+      dispatch(setAlert("Your account has been permanantly deleted"));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  }
+};
+
+// Delete Account & Profile
+export const deleteAccountAdmin = (id) => async (dispatch) => {
+  if (window.confirm("Are you sure? This can NOT be undone")) {
+    try {
+      await axios.delete(`/api/admin/delete_profile/${id}`);
+
+      dispatch({
+        type: CLEAR_PROFILE_ADMIN,
+        payload: id,
+      });
       dispatch({ type: ACCOUNT_DELETED });
       dispatch(setAlert("Your account has been permanantly deleted"));
     } catch (err) {

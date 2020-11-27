@@ -7,6 +7,7 @@ import {
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
+  DELETE_POSTS_ADMIN,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,12 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case DELETE_POSTS:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== payload),
+        loading: false,
+      };
+    case DELETE_POSTS_ADMIN:
       return {
         ...state,
         posts: state.posts.filter((post) => post.id !== payload),

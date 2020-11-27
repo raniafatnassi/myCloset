@@ -3,13 +3,20 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import { addLike, removeLike, deletePost } from "../../actions/post";
+import {
+  addLike,
+  removeLike,
+  deletePost,
+  deletePostAdmin,
+} from "../../actions/post";
 
 const PostItem = ({
   addLike,
   removeLike,
   deletePost,
+  deletePostAdmin,
   auth,
+  auth: { isAuthenticated },
   post: { _id, text, image, price, name, avatar, user, likes, comments, date },
   showActions,
 }) => {
@@ -31,7 +38,15 @@ const PostItem = ({
         <p class="post-date">
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
-        {showActions && (
+        <div className="add-cart">
+          <Link to="/addCart">
+            <img
+              src="https://icon-library.com/images/add-to-cart-icon/add-to-cart-icon-23.jpg"
+              alt="addCart"
+            />
+          </Link>
+        </div>
+        {showActions && isAuthenticated && (
           <Fragment>
             <button
               onClick={(e) => addLike(_id)}
@@ -68,6 +83,15 @@ const PostItem = ({
                 <i class="fas fa-times"></i>
               </button>
             )}
+            {auth.user.role === "admin" && (
+              <button
+                onClick={() => deletePostAdmin(_id)}
+                type="button"
+                class="btn btn-danger"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            )}
           </Fragment>
         )}
       </div>
@@ -85,12 +109,16 @@ PostItem.propTypes = {
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
+  deletePostAdmin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
-  PostItem
-);
+export default connect(mapStateToProps, {
+  addLike,
+  removeLike,
+  deletePost,
+  deletePostAdmin,
+})(PostItem);

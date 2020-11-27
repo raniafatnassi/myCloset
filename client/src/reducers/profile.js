@@ -3,6 +3,7 @@ import {
   GET_PROFILES,
   PROFILE_ERROR,
   CLEAR_PROFILE,
+  CLEAR_PROFILE_ADMIN,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: null,
+        repos: [],
+        loading: false,
+      };
+    case CLEAR_PROFILE_ADMIN:
+      return {
+        ...state,
+        profiles: state.profiles.filter((profile) => profile.id !== payload),
         repos: [],
         loading: false,
       };
