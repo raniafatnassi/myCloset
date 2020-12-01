@@ -17,40 +17,41 @@ const PostForm = ({ addPost }) => {
         className="form"
         onSubmit={(e) => {
           e.preventDefault();
-          addPost({ text, price });
+          addPost({ text, price, image });
           setText("");
           setPrice("");
+          setImage("");
         }}
       >
         <div className="form-group">
-        <input
-          type="text"
-          name="text"
-          placeholder="Product Name"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          required
-        />
+          <input
+            type="text"
+            name="text"
+            placeholder="Product Name"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            required
+          />
         </div>
         <div className="form-group">
-        <input
-          type="text"
-          name="price"
-          placeholder="Product Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
+          <input
+            type="text"
+            name="price"
+            placeholder="Product Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
         </div>
         <div className="form-group">
-        <input
+          <input
             type="text"
             placeholder="Please Put an Image of Your Product"
             name="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
           />
-          </div>
+        </div>
         <input type="submit" className="btn btn-dark my-1" value="Submit" />
       </form>
     </div>

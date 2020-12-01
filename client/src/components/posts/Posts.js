@@ -19,7 +19,7 @@ const Posts = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Posts</h1>
+      <h1 className="large text-primary">Products</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>

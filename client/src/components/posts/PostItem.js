@@ -38,14 +38,6 @@ const PostItem = ({
         <p class="post-date">
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
-        <div className="add-cart">
-          <Link to="/addCart">
-            <img
-              src="https://icon-library.com/images/add-to-cart-icon/add-to-cart-icon-23.jpg"
-              alt="addCart"
-            />
-          </Link>
-        </div>
         {showActions && isAuthenticated && (
           <Fragment>
             <button

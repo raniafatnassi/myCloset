@@ -183,7 +183,7 @@ const Landing = ({ isAuthenticated }) => {
             <div className="hover-team">
               <div className="our-team">
                 {" "}
-                <img src={image3} alt="" />
+                <img src={image1} alt="" />
                 <div className="team-content">
                   <h3 className="title">Ikbel Jhidri</h3>{" "}
                   <span className="post">Web Developer</span>{" "}

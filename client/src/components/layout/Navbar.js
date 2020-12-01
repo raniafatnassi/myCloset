@@ -31,7 +31,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/dashbard">
+        <Link className="nav-link" to="/dashboard">
           Dashboard
         </Link>
       </li>
